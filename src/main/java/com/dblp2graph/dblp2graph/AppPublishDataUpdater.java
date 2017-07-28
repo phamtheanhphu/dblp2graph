@@ -20,9 +20,10 @@ public class AppPublishDataUpdater {
 		
 		Query query = session
 				.createQuery("from PublishData " + "where dom_content is null AND (accessUrl NOT LIKE :accessUrl1 "
-						+ "AND accessUrl  NOT LIKE :accessUrl2)");
+						+ "AND accessUrl  NOT LIKE :accessUrl2 AND accessUrl  NOT LIKE :accessUrl3)");
 		query.setParameter("accessUrl1", "https://link.springer.com%");
-		query.setParameter("accessUrl2", "http://ieeexplore.ieee.org:80/document/%");
+		query.setParameter("accessUrl2", "http://ieeexplore.ieee.org:80/%");
+		query.setParameter("accessUrl3", "http://www.inderscience.com/");
 		
 		/*Query query = session
 				.createQuery("from PublishData " + "where dom_content is null AND accessUrl LIKE :accessUrl");
