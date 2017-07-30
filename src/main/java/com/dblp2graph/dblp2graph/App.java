@@ -15,10 +15,11 @@ import com.dblp2graph.persistence.HibernateUtil;
 public class App {
 
 	public static void main(String[] args) {
-		showPublish();
+		showAuthor();
 	}
 	
 	private static void showPublish() {
+		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Query query = session.createQuery("from Publish where id = :id");
 		query.setParameter("id", 3566628);
