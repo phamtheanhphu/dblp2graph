@@ -1,10 +1,14 @@
 package com.dblp2graph.OGM.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import org.neo4j.driver.internal.spi.Connection;
 import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Property;
+import org.neo4j.ogm.annotation.Relationship;
 
 @NodeEntity
 public class Publication {
@@ -81,6 +85,12 @@ public class Publication {
 	@Property(name = "mdate")
 	private Date mDate;
 
+	@Relationship(type = "CITE_TO", direction = Relationship.INCOMING)
+	private List<Publication> citedPubs = new ArrayList<Publication>();
+	
+	@Relationship(type = "REFER_TO", direction = Relationship.OUTGOING)
+	private List<Publication> referToPubs = new ArrayList<Publication>();
+	
 	public Publication() {
 		super();
 	}
@@ -307,7 +317,22 @@ public class Publication {
 	public void setmDate(Date mDate) {
 		this.mDate = mDate;
 	}
-	
+
+	public List<Publication> getCitedPubs() {
+		return citedPubs;
+	}
+
+	public void setCitedPubs(List<Publication> citedPubs) {
+		this.citedPubs = citedPubs;
+	}
+
+	public List<Publication> getReferToPubs() {
+		return referToPubs;
+	}
+
+	public void setReferToPubs(List<Publication> referToPubs) {
+		this.referToPubs = referToPubs;
+	}
 	
 	
 }

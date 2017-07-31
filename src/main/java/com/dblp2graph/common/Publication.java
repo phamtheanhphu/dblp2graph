@@ -373,9 +373,7 @@ public class Publication implements Serializable {
 			pubOGM.setSourceId(this.sourceId);
 		}
 
-		/*
-		 * if(this.year) { pubOGM.setYear(this.year); }
-		 */
+		pubOGM.setYear(this.year);
 
 		if (this.type != null) {
 			pubOGM.setType(this.type);

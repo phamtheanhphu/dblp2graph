@@ -2,14 +2,12 @@ package com.dblp2graph.dblp2graph;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.dblp2graph.common.Author;
 import com.dblp2graph.common.Publication;
-import com.dblp2graph.common.publication.PublicationData;
 import com.dblp2graph.persistence.HibernateUtil;
 
 public class App {

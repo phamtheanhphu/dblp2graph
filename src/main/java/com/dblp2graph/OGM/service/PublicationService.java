@@ -7,5 +7,7 @@ public interface PublicationService {
 	public Iterable<Publication> findPubByDBLPKey(String dblpKey);
 	
 	public Publication findOneByDBLPKey(String dblpKey);
+	
+	public void save(Publication pub);
 
 }

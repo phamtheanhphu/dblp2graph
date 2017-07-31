@@ -3,6 +3,8 @@ package com.dblp2graph.OGM.service.genetic;
 import java.util.Collections;
 
 import org.neo4j.ogm.session.Session;
+import org.neo4j.ogm.transaction.Transaction;
+
 import com.dblp2graph.OGM.factory.Neo4jSessionFactory;
 
 public abstract class GenericService<T> implements Service<T> {
@@ -22,7 +24,13 @@ public abstract class GenericService<T> implements Service<T> {
 	public Iterable<T> query(String cypher) {
 		return session.query(getEntityType(), cypher, Collections.EMPTY_MAP);
 	}
-
+	
+	public void save(T entity) {
+		Transaction tx = session.beginTransaction();
+		session.save(entity);
+		tx.commit();
+	}
+	
 	public void delete(Long id) {
 		session.delete(session.load(getEntityType(), id));
 	}

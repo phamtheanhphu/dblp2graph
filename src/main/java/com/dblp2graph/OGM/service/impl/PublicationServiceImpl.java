@@ -5,7 +5,13 @@ import com.dblp2graph.OGM.service.PublicationService;
 import com.dblp2graph.OGM.service.genetic.GenericService;
 
 public class PublicationServiceImpl extends GenericService<Publication> implements PublicationService {
-
+	
+	@Override
+	public void save(Publication entity) {
+		// TODO Auto-generated method stub
+		super.save(entity);
+	}
+	
 	public Iterable<Publication> findPubByDBLPKey(String dblpKey) {
 		// TODO Auto-generated method stub
 		String cypher = "MATCH (p:Publication {dblp_key:'" + dblpKey + "'}) RETURN p";
