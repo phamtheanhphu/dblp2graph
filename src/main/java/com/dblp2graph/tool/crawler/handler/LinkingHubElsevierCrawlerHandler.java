@@ -9,7 +9,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-import com.dblp2graph.common.publish.PublishData;
+import com.dblp2graph.common.publication.PublicationData;
 import com.dblp2graph.tool.crawler.WebFileDownloader;
 
 public class LinkingHubElsevierCrawlerHandler {
@@ -21,7 +21,7 @@ public class LinkingHubElsevierCrawlerHandler {
 		// TODO Auto-generated constructor stub
 	}
 
-	public static PublishData proceed(Document doc, String outputFolderPath) throws IOException {
+	public static PublicationData proceed(Document doc, String outputFolderPath) throws IOException {
 
 		if (doc != null) {
 			
@@ -36,7 +36,7 @@ public class LinkingHubElsevierCrawlerHandler {
 								"http://www.sciencedirect.com/science/article");
 						doc = Jsoup.connect(nextPageUrl).get();
 						if(doc!=null) {
-							PublishData publishData = new PublishData();
+							PublicationData publishData = new PublicationData();
 							publishData.setDomDontent(doc.toString());
 							publishData.setAccessUrl(doc.baseUri());
 							return publishData;

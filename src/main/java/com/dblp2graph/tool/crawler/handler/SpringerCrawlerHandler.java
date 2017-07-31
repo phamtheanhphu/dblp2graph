@@ -7,7 +7,7 @@ import java.util.Date;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-import com.dblp2graph.common.publish.PublishData;
+import com.dblp2graph.common.publication.PublicationData;
 import com.dblp2graph.tool.crawler.WebFileDownloader;
 
 public class SpringerCrawlerHandler {
@@ -19,11 +19,11 @@ public class SpringerCrawlerHandler {
 		// TODO Auto-generated constructor stub
 	}
 
-	public static PublishData proceed(Document doc, String outputFolderPath) {
+	public static PublicationData proceed(Document doc, String outputFolderPath) {
 
 		if (doc != null) {
 
-			PublishData publishData = new PublishData();
+			PublicationData publishData = new PublicationData();
 			
 			publishData.setDomDontent(doc.toString());
 			publishData.setAccessUrl(doc.baseUri());

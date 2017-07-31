@@ -45,14 +45,14 @@ public class Author implements Serializable {
 	private String hpDblpKey;
 
 	// set of publishes (written by author)
-	private Set<Publish> publishes = new HashSet<Publish>(0);
+	private Set<Publication> publishes = new HashSet<Publication>(0);
 
 	public Author() {
 		super();
 	}
 
 	public Author(int authorId, String author, String authorAliases, int startYear, int endYear, int pubCount,
-			String hpDblpKey, Set<Publish> publishes) {
+			String hpDblpKey, Set<Publication> publishes) {
 		super();
 		this.authorId = authorId;
 		this.author = author;
@@ -133,11 +133,11 @@ public class Author implements Serializable {
 	@JoinTable(name = "dblp_author_pub_maps", catalog = "dblp_rdbms", joinColumns = {
 			@JoinColumn(name = "author_id", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "id", nullable = false, updatable = false) })
-	public Set<Publish> getPublishes() {
+	public Set<Publication> getPublishes() {
 		return publishes;
 	}
 
-	public void setPublishes(Set<Publish> publishes) {
+	public void setPublishes(Set<Publication> publishes) {
 		this.publishes = publishes;
 	}
 

@@ -5,8 +5,8 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import com.dblp2graph.common.Publish;
-import com.dblp2graph.common.publish.PublishData;
+import com.dblp2graph.common.Publication;
+import com.dblp2graph.common.publication.PublicationData;
 import com.dblp2graph.persistence.HibernateUtil;
 import com.dblp2graph.tool.crawler.AbstractWebCrawler;
 
@@ -39,12 +39,12 @@ public class AppCrawler {
 				query = session.createQuery("from Publish where id = :id");
 
 				query.setParameter("id", id);
-				List<Publish> publishes = query.list();
+				List<Publication> publishes = query.list();
 				if (publishes != null) {
-					Publish publish = publishes.get(0);
+					Publication publish = publishes.get(0);
 					if (publish != null) {
-						if (publish.getPublishDOIUrl() != null) {
-							PublishData publishRaw = AbstractWebCrawler.proceed(publish.getPublishDOIUrl(),
+						if (publish.getEe() != null) {
+							PublicationData publishRaw = AbstractWebCrawler.proceed(publish.getEe(),
 									outputFolderPath);
 							if (publishRaw != null) {
 								publishRaw.setPubId(id);

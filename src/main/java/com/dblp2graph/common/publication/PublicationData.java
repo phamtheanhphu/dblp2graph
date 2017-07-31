@@ -1,4 +1,4 @@
-package com.dblp2graph.common.publish;
+package com.dblp2graph.common.publication;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -13,9 +13,9 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 
-@Entity(name = "PublishData")
+@Entity(name = "PublicationData")
 @Table(name = "dblp_publish_data", catalog = "dblp_rdbms")
-public class PublishData implements Serializable {
+public class PublicationData implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -35,11 +35,11 @@ public class PublishData implements Serializable {
 	// publish's access url
 	private String accessUrl;
 
-	public PublishData() {
+	public PublicationData() {
 		super();
 	}
 
-	public PublishData(int id, int pubId, String domDontent) {
+	public PublicationData(int id, int pubId, String domDontent) {
 		super();
 		this.id = id;
 		this.pubId = pubId;

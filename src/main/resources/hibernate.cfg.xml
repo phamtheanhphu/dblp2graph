@@ -21,8 +21,8 @@
 		
 		<!--  mapping classes -->
 		<mapping class="com.dblp2graph.common.Author"></mapping>
-		<mapping class="com.dblp2graph.common.Publish"></mapping>
-		<mapping class="com.dblp2graph.common.publish.PublishData"></mapping>
+		<mapping class="com.dblp2graph.common.Publication"></mapping>
+		<mapping class="com.dblp2graph.common.publication.PublicationData"></mapping>
 
 	</session-factory>
 

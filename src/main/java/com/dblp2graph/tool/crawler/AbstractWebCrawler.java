@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-import com.dblp2graph.common.publish.PublishData;
+import com.dblp2graph.common.publication.PublicationData;
 import com.dblp2graph.tool.crawler.handler.AISCrawlerHandler;
 import com.dblp2graph.tool.crawler.handler.DigLibCrawlerHandler;
 import com.dblp2graph.tool.crawler.handler.IEEPCrawlerHandler;
@@ -29,7 +29,7 @@ public class AbstractWebCrawler {
 		// TODO Auto-generated constructor stub
 	}
 
-	public static PublishData proceed(String dblpDOIUrl, String outputFolderPath) {
+	public static PublicationData proceed(String dblpDOIUrl, String outputFolderPath) {
 
 		try {
 
@@ -38,7 +38,7 @@ public class AbstractWebCrawler {
 
 			System.out.println("Processing pageUrl -> [" + pageUrl + "]");
 
-			PublishData publishData = new PublishData();
+			PublicationData publishData = new PublicationData();
 			publishData.setAccessUrl(pageUrl);
 
 			if (pageUrl.startsWith(SPINGER_URL_PATTERN)) {
