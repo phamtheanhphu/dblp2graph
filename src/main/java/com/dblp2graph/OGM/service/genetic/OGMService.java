@@ -1,6 +1,6 @@
 package com.dblp2graph.OGM.service.genetic;
 
-interface Service<T> {
+interface OGMService<T> {
 
 	public Iterable<T> findAll();
 

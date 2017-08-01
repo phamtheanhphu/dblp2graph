@@ -7,12 +7,12 @@ import org.neo4j.ogm.transaction.Transaction;
 
 import com.dblp2graph.OGM.factory.Neo4jSessionFactory;
 
-public abstract class GenericService<T> implements Service<T> {
+public abstract class OGMGenericService<T> implements OGMService<T> {
 
 	private static final int DEPTH_LIST = 0;
 	private static final int DEPTH_ENTITY = 1;
 	protected Session session = Neo4jSessionFactory.getInstance().getNeo4jSession();
-
+	
 	public Iterable<T> findAll() {
 		return session.loadAll(getEntityType(), DEPTH_LIST);
 	}

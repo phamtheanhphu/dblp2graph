@@ -1,4 +1,4 @@
-package com.dblp2graph.persistence;
+package com.dblp2graph.ORM.persistence;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;

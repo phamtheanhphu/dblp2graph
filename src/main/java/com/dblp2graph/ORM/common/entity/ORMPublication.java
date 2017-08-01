@@ -1,4 +1,4 @@
-package com.dblp2graph.common;
+package com.dblp2graph.ORM.common.entity;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -22,7 +22,7 @@ import org.neo4j.ogm.annotation.Property;
 
 @Entity(name = "Publication")
 @Table(name = "dblp_publishes", catalog = "dblp_rdbms")
-public class Publication implements Serializable {
+public class ORMPublication implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -82,16 +82,16 @@ public class Publication implements Serializable {
 	private Date mDate;
 
 	// set of reference publishes
-	private Set<Publication> referPublishes = new HashSet<Publication>(0);
+	private Set<ORMPublication> referPublishes = new HashSet<ORMPublication>(0);
 
 	// set of cited publishes (cited / reference to)
-	private Set<Publication> citedPublishes = new HashSet<Publication>(0);
+	private Set<ORMPublication> citedPublishes = new HashSet<ORMPublication>(0);
 
-	public Publication() {
+	public ORMPublication() {
 		super();
 	}
 
-	public Publication(int id, String dblpKey, String title) {
+	public ORMPublication(int id, String dblpKey, String title) {
 		super();
 		this.id = id;
 		this.dblpKey = dblpKey;
@@ -325,11 +325,11 @@ public class Publication implements Serializable {
 	@JoinTable(name = "dblp_pub_citation_maps", catalog = "dblp_rdbms", joinColumns = {
 			@JoinColumn(name = "id", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "cited_pub_id", nullable = false, updatable = false) })
-	public Set<Publication> getReferPublishes() {
+	public Set<ORMPublication> getReferPublishes() {
 		return referPublishes;
 	}
 
-	public void setReferPublishes(Set<Publication> referPublishes) {
+	public void setReferPublishes(Set<ORMPublication> referPublishes) {
 		this.referPublishes = referPublishes;
 	}
 
@@ -337,11 +337,11 @@ public class Publication implements Serializable {
 	@JoinTable(name = "dblp_pub_citation_maps", catalog = "dblp_rdbms", joinColumns = {
 			@JoinColumn(name = "cited_pub_id", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "id", nullable = false, updatable = false) })
-	public Set<Publication> getCitedPublishes() {
+	public Set<ORMPublication> getCitedPublishes() {
 		return citedPublishes;
 	}
 
-	public void setCitedPublishes(Set<Publication> citedPublishes) {
+	public void setCitedPublishes(Set<ORMPublication> citedPublishes) {
 		this.citedPublishes = citedPublishes;
 	}
 
@@ -351,9 +351,9 @@ public class Publication implements Serializable {
 				+ this.dblpKey;
 	}
 
-	public com.dblp2graph.OGM.entity.Publication toOGMObject() {
+	public com.dblp2graph.OGM.entity.OGMPublication toOGMObject() {
 
-		com.dblp2graph.OGM.entity.Publication pubOGM = new com.dblp2graph.OGM.entity.Publication();
+		com.dblp2graph.OGM.entity.OGMPublication pubOGM = new com.dblp2graph.OGM.entity.OGMPublication();
 
 		pubOGM.setPubId(this.getId());
 

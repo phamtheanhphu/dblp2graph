@@ -9,7 +9,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-import com.dblp2graph.common.publication.PublicationData;
+import com.dblp2graph.ORM.common.entity.publication.ORMPublicationData;
 import com.dblp2graph.tool.crawler.WebFileDownloader;
 
 public class DigLibCrawlerHandler {
@@ -21,13 +21,13 @@ public class DigLibCrawlerHandler {
 		// TODO Auto-generated constructor stub
 	}
 
-	public static PublicationData proceed(Document doc, String outputFolderPath) throws IOException {
+	public static ORMPublicationData proceed(Document doc, String outputFolderPath) throws IOException {
 
 		if (doc != null) {
 
 			if (doc.select(".simple-item-view-description > div").text().toString() != null) {
 
-				PublicationData publishData = new PublicationData();
+				ORMPublicationData publishData = new ORMPublicationData();
 				publishData.setDomDontent(doc.select(".simple-item-view-description > div").text().toString());
 				publishData.setAccessUrl(doc.baseUri());
 				return publishData;

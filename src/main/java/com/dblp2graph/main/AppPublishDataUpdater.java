@@ -1,12 +1,12 @@
-package com.dblp2graph.dblp2graph;
+package com.dblp2graph.main;
 
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import com.dblp2graph.common.publication.PublicationData;
-import com.dblp2graph.persistence.HibernateUtil;
+import com.dblp2graph.ORM.common.entity.publication.ORMPublicationData;
+import com.dblp2graph.ORM.persistence.HibernateUtil;
 import com.dblp2graph.tool.crawler.AbstractWebCrawler;
 
 public class AppPublishDataUpdater {
@@ -29,15 +29,15 @@ public class AppPublishDataUpdater {
 				.createQuery("from PublishData " + "where dom_content is null AND accessUrl LIKE :accessUrl");
 		query.setParameter("accessUrl", "https://www.igi-global.com%");*/
 
-		List<PublicationData> pubDataList = query.list();
+		List<ORMPublicationData> pubDataList = query.list();
 
 		System.out.println("Extracting total -> [" + pubDataList.size() + "] for updating !");
 
-		for (PublicationData publishData : pubDataList) {
+		for (ORMPublicationData publishData : pubDataList) {
 			try {
 				if (publishData.getAccessUrl() != null) {
 					
-					PublicationData publishRaw = AbstractWebCrawler.proceed(publishData.getAccessUrl(), outputFolderPath);
+					ORMPublicationData publishRaw = AbstractWebCrawler.proceed(publishData.getAccessUrl(), outputFolderPath);
 					
 					if (publishRaw.getDomDontent() != null) {
 						

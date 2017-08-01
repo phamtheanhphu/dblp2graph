@@ -7,7 +7,7 @@ import java.util.Date;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-import com.dblp2graph.common.publication.PublicationData;
+import com.dblp2graph.ORM.common.entity.publication.ORMPublicationData;
 import com.dblp2graph.tool.crawler.WebFileDownloader;
 
 public class MDPICrawlerHandler {
@@ -19,11 +19,11 @@ public class MDPICrawlerHandler {
 		// TODO Auto-generated constructor stub
 	}
 
-	public static PublicationData proceed(Document doc, String outputFolderPath) {
+	public static ORMPublicationData proceed(Document doc, String outputFolderPath) {
 
 		if (doc != null) {
 
-			PublicationData publishRaw = new PublicationData();
+			ORMPublicationData publishRaw = new ORMPublicationData();
 			publishRaw.setDomDontent(doc.toString());
 
 			Elements pdfDownloadElements = doc.select("object#test-pdf-preview");

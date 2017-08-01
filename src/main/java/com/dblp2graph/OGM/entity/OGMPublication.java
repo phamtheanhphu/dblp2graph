@@ -1,104 +1,108 @@
 package com.dblp2graph.OGM.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.neo4j.driver.internal.spi.Connection;
 import org.neo4j.ogm.annotation.GraphId;
+import org.neo4j.ogm.annotation.Index;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Property;
 import org.neo4j.ogm.annotation.Relationship;
 
-@NodeEntity
-public class Publication {
+@NodeEntity(label = "Publication")
+public class OGMPublication implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@GraphId
 	private Long id;
 
+	@Index(unique = true, primary = true)
 	@Property(name = "pub_id")
 	private int pubId;
-	
+
 	@Property(name = "dblp_key")
 	private String dblpKey;
-	
+
 	@Property(name = "title")
 	private String title;
-	
+
 	@Property(name = "source")
 	private String source;
-	
+
 	@Property(name = "source_id")
 	private String sourceId;
-	
+
 	@Property(name = "series")
 	private String series;
-	
+
 	@Property(name = "year")
 	private int year;
-	
+
 	@Property(name = "type")
 	private String type;
-	
+
 	@Property(name = "volume")
 	private String volume;
-	
+
 	@Property(name = "number")
 	private String number;
-	
+
 	@Property(name = "month")
 	private String month;
-	
+
 	@Property(name = "pages")
 	private String pages;
-	
+
 	@Property(name = "ee")
 	private String ee;
-	
+
 	@Property(name = "ee_uniq")
 	private int eeUniq;
-	
+
 	@Property(name = "ee_PDF")
 	private String eePDF;
-	
+
 	@Property(name = "url")
 	private String url;
-	
+
 	@Property(name = "publisher")
 	private String publisher;
-	
+
 	@Property(name = "isbn")
 	private String isbn;
-	
+
 	@Property(name = "crossref")
 	private String crossRef;
-	
+
 	@Property(name = "titleSignature")
 	private String titleSignature;
-	
+
 	@Property(name = "doi")
 	private String doi;
-	
+
 	@Property(name = "doi_uniq")
 	private int doiUniq;
-	
+
 	@Property(name = "mdate")
 	private Date mDate;
 
 	@Relationship(type = "CITE_TO", direction = Relationship.INCOMING)
-	private List<Publication> citedPubs = new ArrayList<Publication>();
-	
+	private List<OGMPublication> citedPubs = new ArrayList<OGMPublication>();
+
 	@Relationship(type = "REFER_TO", direction = Relationship.OUTGOING)
-	private List<Publication> referToPubs = new ArrayList<Publication>();
-	
-	public Publication() {
+	private List<OGMPublication> referToPubs = new ArrayList<OGMPublication>();
+
+	public OGMPublication() {
 		super();
 	}
 
-	public Publication(Long id, int pubId, String dblpKey, String title, String source, String sourceId, String series,
-			int year, String type, String volume, String number, String month, String pages, String ee, int eeUniq,
-			String eePDF, String url, String publisher, String isbn, String crossRef, String titleSignature, String doi,
-			int doiUniq, Date mDate) {
+	public OGMPublication(Long id, int pubId, String dblpKey, String title, String source, String sourceId,
+			String series, int year, String type, String volume, String number, String month, String pages, String ee,
+			int eeUniq, String eePDF, String url, String publisher, String isbn, String crossRef, String titleSignature,
+			String doi, int doiUniq, Date mDate) {
 		super();
 		this.id = id;
 		this.pubId = pubId;
@@ -318,21 +322,20 @@ public class Publication {
 		this.mDate = mDate;
 	}
 
-	public List<Publication> getCitedPubs() {
+	public List<OGMPublication> getCitedPubs() {
 		return citedPubs;
 	}
 
-	public void setCitedPubs(List<Publication> citedPubs) {
+	public void setCitedPubs(List<OGMPublication> citedPubs) {
 		this.citedPubs = citedPubs;
 	}
 
-	public List<Publication> getReferToPubs() {
+	public List<OGMPublication> getReferToPubs() {
 		return referToPubs;
 	}
 
-	public void setReferToPubs(List<Publication> referToPubs) {
+	public void setReferToPubs(List<OGMPublication> referToPubs) {
 		this.referToPubs = referToPubs;
 	}
-	
-	
+
 }
