@@ -65,7 +65,6 @@ public class AppPubORM2OGMMapper {
 						
 						// add refer to relation
 						Set<ORMPublication> referToPubsORM = pubORM.getReferPublishes();
-						// System.out.println(referToPubsORM.size());
 						if (referToPubsORM != null) {
 							for (ORMPublication referToPubORM : referToPubsORM) {
 								// System.out.println(referToPubORM.toString());
@@ -74,12 +73,12 @@ public class AppPubORM2OGMMapper {
 						}
 
 						// add cited by relation
-						Set<ORMPublication> citedByPubsORM = pubORM.getCitedPublishes();
+						/*Set<ORMPublication> citedByPubsORM = pubORM.getCitedPublishes();
 						if (citedByPubsORM != null) {
 							for (ORMPublication citedByPubORM : citedByPubsORM) {
 								pubOGM.getCitedPubs().add(citedByPubORM.toOGMObject());
 							}
-						}
+						}*/
 
 						ogmPublicationService.save(pubOGM);
 
@@ -92,7 +91,8 @@ public class AppPubORM2OGMMapper {
 		}
 
 	}
-
+	
+	
 	// fetchAllPubIdList
 	private static List<Integer> fetchAllPubIdList(int startAt, int maxNum) {
 		Session session = HibernateUtil.getSessionFactory().openSession();

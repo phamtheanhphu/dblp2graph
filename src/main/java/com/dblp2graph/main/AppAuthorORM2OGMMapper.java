@@ -8,6 +8,7 @@ import org.hibernate.Session;
 
 import com.dblp2graph.OGM.entity.OGMAuthor;
 import com.dblp2graph.OGM.entity.OGMPublication;
+import com.dblp2graph.OGM.entity.relation.AUTHOR_OF;
 import com.dblp2graph.OGM.service.OGMAuthorService;
 import com.dblp2graph.OGM.service.OGMPublicationService;
 import com.dblp2graph.OGM.service.impl.OGMAuthorServiceImpl;
@@ -32,6 +33,7 @@ public class AppAuthorORM2OGMMapper {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+
 		if (args.length > 0) {
 			int startAt = Integer.parseInt(args[0].replaceAll("--startAt=", "").trim());
 			int maxNum = Integer.parseInt(args[1].replaceAll("--maxNum=", "").trim());
@@ -39,6 +41,7 @@ public class AppAuthorORM2OGMMapper {
 		} else {
 			System.out.println("Invalid arguments !");
 		}
+
 	}
 
 	// mapAuthorFromRDBMS2Graph
@@ -64,7 +67,11 @@ public class AppAuthorORM2OGMMapper {
 						Set<ORMPublication> authorOfPubs = ormAuthor.getAuthorOfPubs();
 						if (authorOfPubs != null) {
 							for (ORMPublication authorOfPub : authorOfPubs) {
-								ogmAuthor.getAuthorOfPubs().add(authorOfPub.toOGMObject());
+
+								int authorOrder = getAuthorOrder(ogmAuthor.getAuthor(), authorOfPub.getId());
+								AUTHOR_OF authorOfRel = new AUTHOR_OF(ogmAuthor, authorOfPub.toOGMObject());
+								authorOfRel.setOrder(authorOrder);
+								ogmAuthor.getAuthorOfPubs().add(authorOfRel);
 							}
 						}
 
@@ -78,6 +85,22 @@ public class AppAuthorORM2OGMMapper {
 			}
 		}
 
+	}
+
+	private static int getAuthorOrder(String authorName, int pubId) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Query query = session
+				.createQuery("select author_num from AuthorPubMap " + "WHERE id = :id AND author = :author");
+		query.setParameter("id", pubId);
+		query.setParameter("author", authorName);
+		List<Integer> authorNums = query.list();
+		if(authorNums!=null) {
+			return authorNums.get(0);
+		} else {
+			return 0;
+		}
+		//System.out.println("Author order is -> [" + authorNums.get(0) + "]");
+		
 	}
 
 	private static List<Integer> fetchAllAuthorIdList(int startAt, int maxNum) {

@@ -10,6 +10,8 @@ import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Property;
 import org.neo4j.ogm.annotation.Relationship;
 
+import com.dblp2graph.OGM.entity.relation.AUTHOR_OF;
+
 @NodeEntity(label = "Author")
 public class OGMAuthor implements Serializable {
 
@@ -54,7 +56,7 @@ public class OGMAuthor implements Serializable {
 
 	// set of publishes (written by author)
 	@Relationship(type = "AUTHOR_OF", direction = Relationship.OUTGOING)
-	private Set<OGMPublication> authorOfPubs = new HashSet<OGMPublication>(0);
+	private Set<AUTHOR_OF> authorOfPubs = new HashSet<AUTHOR_OF>(0);
 
 	public OGMAuthor() {
 		super();
@@ -62,7 +64,7 @@ public class OGMAuthor implements Serializable {
 
 	public OGMAuthor(Long id, int authorId, String author, String allAliases, int pubCount, int avgPubCount,
 			int startYear, int endYear, int numSources, String hpDblpKey, String hpEE, String hpPublisher,
-			Set<OGMPublication> authorOfPubs) {
+			Set<AUTHOR_OF> authorOfPubs) {
 		super();
 		this.id = id;
 		this.authorId = authorId;
@@ -175,12 +177,14 @@ public class OGMAuthor implements Serializable {
 		this.hpPublisher = hpPublisher;
 	}
 
-	public Set<OGMPublication> getAuthorOfPubs() {
+	public Set<AUTHOR_OF> getAuthorOfPubs() {
 		return authorOfPubs;
 	}
 
-	public void setAuthorOfPubs(Set<OGMPublication> authorOfPubs) {
+	public void setAuthorOfPubs(Set<AUTHOR_OF> authorOfPubs) {
 		this.authorOfPubs = authorOfPubs;
 	}
+
+	
 
 }

@@ -22,6 +22,8 @@
 		<!--  mapping classes -->
 		<mapping class="com.dblp2graph.ORM.common.entity.ORMAuthor"></mapping>
 		<mapping class="com.dblp2graph.ORM.common.entity.ORMPublication"></mapping>
+		<mapping class="com.dblp2graph.ORM.common.entity.ORMAuthorPubMap"></mapping>
+		
 		<mapping class="com.dblp2graph.ORM.common.entity.publication.ORMPublicationData"></mapping>
 
 	</session-factory>

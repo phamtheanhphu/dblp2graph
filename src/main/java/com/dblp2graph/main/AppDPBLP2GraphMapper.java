@@ -53,7 +53,7 @@ public class AppDPBLP2GraphMapper {
 			
 			if(ormAuthor.getAuthorOfPubs()!=null) {
 				for(ORMPublication ormAuthorOfPub : ormAuthor.getAuthorOfPubs()) {
-					ogmAuthor.getAuthorOfPubs().add(ormAuthorOfPub.toOGMObject());
+					//ogmAuthor.getAuthorOfPubs().add(ormAuthorOfPub.toOGMObject());
 				}
 			}
 			
