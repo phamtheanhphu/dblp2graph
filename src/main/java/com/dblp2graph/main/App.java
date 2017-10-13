@@ -14,7 +14,7 @@ import com.dblp2graph.ORM.persistence.HibernateUtil;
 
 public class App {
 
-	private static ORMPublicationDAO ormPublicationDAO = new ORMPublicationDAOImpl();;
+	private static ORMPublicationDAO ormPublicationDAO = new ORMPublicationDAOImpl();
 
 	public static void main(String[] args) {
 		// showAuthor();

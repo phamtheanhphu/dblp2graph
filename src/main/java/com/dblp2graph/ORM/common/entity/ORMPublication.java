@@ -80,7 +80,9 @@ public class ORMPublication implements Serializable {
 	private int doiUniq;
 
 	private Date mDate;
-
+	
+	private Set<ORMAuthor> authors = new HashSet<ORMAuthor>(0);
+	
 	// set of reference publishes
 	private Set<ORMPublication> referPublishes = new HashSet<ORMPublication>(0);
 
@@ -339,6 +341,19 @@ public class ORMPublication implements Serializable {
 					@JoinColumn(name = "id", nullable = false, updatable = false) })
 	public Set<ORMPublication> getCitedPublishes() {
 		return citedPublishes;
+	}
+	
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "dblp_author_pub_maps", catalog = "dblp_rdbms", joinColumns = {
+			@JoinColumn(name = "id", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "author_id", nullable = false, updatable = false) })
+	public Set<ORMAuthor> getAuthors() {
+		return authors;
+	}
+
+	public void setAuthors(Set<ORMAuthor> authors) {
+		this.authors = authors;
 	}
 
 	public void setCitedPublishes(Set<ORMPublication> citedPublishes) {

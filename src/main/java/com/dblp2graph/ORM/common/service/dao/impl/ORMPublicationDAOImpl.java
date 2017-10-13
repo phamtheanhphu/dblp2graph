@@ -24,7 +24,14 @@ public class ORMPublicationDAOImpl extends ORMGenericService<ORMPublication> imp
 		Criteria criteria = this.currentSession.createCriteria(ORMPublication.class);
 		return (ORMPublication) criteria.add(Restrictions.eq("dblpKey", dblpKey)).uniqueResult();
 	}
+	
 
+	@Override
+	public ORMPublication findByTitle(String title) {
+		Criteria criteria = this.currentSession.createCriteria(ORMPublication.class);
+		return (ORMPublication) criteria.add(Restrictions.eq("title", title)).uniqueResult();
+	}
+	
 	public void persist(ORMPublication entity) {
 		// TODO Auto-generated method stub
 	}
@@ -58,5 +65,7 @@ public class ORMPublicationDAOImpl extends ORMGenericService<ORMPublication> imp
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 }
